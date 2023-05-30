@@ -1,10 +1,35 @@
 import React from 'react'
+import Image from "next/image"
 import styles from '../styles/Navbar.module.css'
 
 const Navbar = () => {
   return (
     <div className={styles.container}>
-        navbar
+      <div className={styles.item}>
+      <div className={styles.callButton}>
+          <Image src="/img/telephone.png" alt="" width="32" height="32" />
+      </div>  
+      <div className={styles.texts}>
+        <div className={styles.text}>ORDER NOW!</div>
+        <div className={styles.text}>09638-050505</div>
+      </div>
+      </div>
+      <div className={styles.item}>
+          <ul className={styles.list}>
+            <li className={styles.listItem}>Restaurant</li>
+            <li className={styles.listItem}>Our Products</li>
+            <li className={styles.listItem}>Menu</li>
+            <Image src="/img/Cheez.png" alt="" width={160} height={96} />
+            <li className={styles.listItem}>Events</li>
+            <li className={styles.listItem}>Contact Us</li>
+          </ul>
+      </div>
+      <div className={styles.item}>
+        <div className={styles.cart}>
+          <Image src="/img/cart.png" alt="" width={30} height={30} />
+          <div className={styles.counter}>2</div>
+        </div>
+      </div>
     </div>
   )
 }
