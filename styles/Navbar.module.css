@@ -100,19 +100,24 @@
 
   
   @media screen and (max-width: 480px) {
-    .container {
+    /* .container {
       width: 100%;
     }
   
     .item {
       flex: 1;
-    }
+    } */
   
     .item:nth-child(2) {
-      flex: 0;
+      display: none;
+      /* flex: 0; */
+    }
+
+    .item:nth-child(1) {
+      flex: 3;
     }
   
-    .item:last-child {
+    /* .item:last-child {
       justify-content: center;
     }
   
@@ -135,6 +140,6 @@
   
     .cart {
       display: none;
-    }
+    } */
   }
   

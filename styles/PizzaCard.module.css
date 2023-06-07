@@ -18,7 +18,7 @@
 .title {
   font-size: 18px;
   font-weight: bold;
-  color: rgba(255, 242, 0, 0.868);
+  color: orange;
 }
 
 .price {
@@ -62,7 +62,7 @@
     font-size: 24px;
   }
 
-  .button {
+  /* .button {
     width: 100%;
-  }
+  } */
 }
