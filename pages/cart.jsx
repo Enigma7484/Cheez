@@ -1,11 +1,75 @@
-import React from 'react'
-import styles from "../styles/Cart.module.css"
-import Image from "next/image"
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
+import styles from "../styles/Cart.module.css";
+import Image from "next/image";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import {
+    PayPalScriptProvider,
+    PayPalButtons,
+    usePayPalScriptReducer
+} from "@paypal/react-paypal-js";
+
+
 
 const Cart = () => {
+    // These values are the props in the UI
+    const amount = "2";
+    const currency = "USD";
+    const style = { "layout": "vertical" };
     const dispatch = useDispatch()
-    const cart = useSelector((state)=>state.cart)
+    const cart = useSelector((state) => state.cart)
+
+    // Custom component to wrap the PayPalButtons and handle currency changes
+    const ButtonWrapper = ({ currency, showSpinner }) => {
+        // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+        // This is the main reason to wrap the PayPalButtons in a new component
+        const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+
+        useEffect(() => {
+            dispatch({
+                type: "resetOptions",
+                value: {
+                    ...options,
+                    currency: currency,
+                },
+            });
+        }, [currency, showSpinner]);
+
+
+        return (<>
+            {(showSpinner && isPending) && <div className="spinner" />}
+            <PayPalButtons
+                style={style}
+                disabled={false}
+                forceReRender={[amount, currency, style]}
+                fundingSource={undefined}
+                createOrder={(data, actions) => {
+                    return actions.order
+                        .create({
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        currency_code: currency,
+                                        value: amount,
+                                    },
+                                },
+                            ],
+                        })
+                        .then((orderId) => {
+                            // Your code here after create the order
+                            return orderId;
+                        });
+                }}
+                onApprove={function (data, actions) {
+                    return actions.order.capture().then(function () {
+                        // Your code here after capture the order
+                    });
+                }}
+            />
+        </>
+        );
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.left}>
@@ -23,8 +87,8 @@ const Cart = () => {
                             <tr className={styles.tr} key={product._id}>
                                 <td>
                                     <div className={styles.imgContainer}>
-                                        <Image 
-                                            src={product.img} 
+                                        <Image
+                                            src={product.img}
                                             layout="fill"
                                             objectFit="cover"
                                             alt=""
@@ -70,9 +134,21 @@ const Cart = () => {
                         <b className={styles.totalTextTitle}>Total:</b>Tk.{cart.total}
                     </div>
                     <button className={styles.button}>CHECKOUT NOW!</button>
-                    
+                    <PayPalScriptProvider
+                        options={{
+                            "clientId": "test",
+                            components: "buttons",
+                            currency: "USD"
+                        }}
+                    >
+                        <ButtonWrapper
+                            currency={currency}
+                            showSpinner={false}
+                        />
+                    </PayPalScriptProvider>
+
                 </div>
-                
+
             </div>
         </div>
     )
