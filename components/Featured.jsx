@@ -8,7 +8,7 @@ const Featured = () => {
     
   const images = [
     "/img/SMG.png",
-    "/img/4Ch.png",
+    "/img/4ch.png",
     "/img/bolognese.png",
   ]
 
