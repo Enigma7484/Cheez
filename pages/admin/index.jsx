@@ -11,7 +11,7 @@ const Index = ({ orders, products }) => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete("http://localhost:3000/api/products/" + id);
+            const res = await axios.delete("https://cheezapp.onrender.com/api/products/" + id);
             setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
         } catch (err) {
             console.log(err);
@@ -118,8 +118,8 @@ export const getServerSideProps = async (ctx) => {
             },
         }
     }
-    const productRes = await axios.get("http://localhost:3000/api/products")
-    const orderRes = await axios.get("http://localhost:3000/api/orders")
+    const productRes = await axios.get("https://cheezapp.onrender.com/api/products")
+    const orderRes = await axios.get("https://cheezapp.onrender.com/api/orders")
 
     return {
         props: {
