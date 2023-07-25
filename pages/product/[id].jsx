@@ -51,19 +51,19 @@ const Product = ({ pizza }) => {
             <div className={styles.sizes}>
                 <div className={styles.size} onClick={() => handleSize(0)}>
                     <Image src="/img/size.png" alt="" layout="fill"/>
-                    <span className={styles.number}>8"</span>
+                    <span className={styles.number}>8 inches</span>
                 </div>
                 <div className={styles.size} onClick={() => handleSize(1)}>
                     <Image src="/img/size.png" alt="" layout="fill"/>
-                    <span className={styles.number}>12"</span>
+                    <span className={styles.number}>12 inches</span>
                 </div>
                 <div className={styles.size} onClick={() => handleSize(2)}>
                     <Image src="/img/size.png" alt="" layout="fill"/>
-                    <span className={styles.number}>14"</span>
+                    <span className={styles.number}>14 inches</span>
                 </div>
                 <div className={styles.size} onClick={() => handleSize(3)}>
                     <Image src="/img/size.png" alt="" layout="fill"/>
-                    <span className={styles.number}>16"</span>
+                    <span className={styles.number}>16 inches</span>
                 </div>
             </div>
             <h3 className={styles.choose}>Choose additional ingredients</h3>
