@@ -118,8 +118,8 @@ export const getServerSideProps = async (ctx) => {
             },
         }
     }
-    const productRes = await axios.get("https://cheezapp.onrender.com/api/products")
-    const orderRes = await axios.get("https://cheezapp.onrender.com/api/orders")
+    const productRes = await axios.get("https://cheezapp.onrender.com/api/products/")
+    const orderRes = await axios.get("https://cheezapp.onrender.com/api/orders/")
 
     return {
         props: {
