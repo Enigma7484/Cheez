@@ -32,11 +32,33 @@ export const getServerSideProps = async (ctx) => {
     admin = true;
   }
 
-  const res = await fetch("https://cheezapp.onrender.com/api/products/");
-  return {
-    props: {
-      productList: res.data,
-      admin,
-    },
-  };
+  try {
+    const res = await axios.get("https://cheezapp.onrender.com/api/products");
+
+    // Validate the data structure
+    if (res.data && Array.isArray(res.data)) {
+      // Filter out any non-serializable values if present in the list
+      const filteredProductList = res.data.filter((item) => {
+        // Add any other conditions if necessary
+        return item !== undefined;
+      });
+
+      return {
+        props: {
+          productList: filteredProductList,
+          admin,
+        },
+      };
+    } else {
+      throw new Error("Invalid API response");
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    return {
+      props: {
+        productList: null,
+        admin,
+      },
+    };
+  }
 };
