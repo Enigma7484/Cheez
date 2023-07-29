@@ -33,7 +33,7 @@ export const getServerSideProps = async (ctx) => {
   }
 
   try {
-    const res = await axios.get("https://cheezapp.onrender.com/api/products");
+    const res = await axios.get("https://cheez.vercel.app/api/products/");
 
     // Validate the data structure
     if (res.data && Array.isArray(res.data)) {

@@ -41,7 +41,7 @@ const Add = ({ setClose }) => {
                 title, desc, prices, extraOptions, img: url,
             };
             
-            await axios.post("https://cheezapp.onrender.com/api/products/", newProduct)
+            await axios.post("https://cheez.vercel.app/api/products/", newProduct)
             setClose(true);
         } catch (err) {
             console.log(err)
