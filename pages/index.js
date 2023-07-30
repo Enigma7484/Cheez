@@ -48,7 +48,7 @@ export async function getServerSideProps(ctx) {
   }
 
   try {
-    const res = await axios.get('http://localhost:3000/api/products');
+    const res = await axios.get('https://cheez.vercel.app/api/products');
     productList = res.data;
   } catch (error) {
     console.error('Error fetching product data:', error);
