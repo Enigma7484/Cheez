@@ -9,7 +9,7 @@ import {
 } from "@paypal/react-paypal-js";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset } from "../redux/cartSlice";
+import { updateCart, reset } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 
 const Cart = () => {
@@ -21,6 +21,13 @@ const Cart = () => {
     const style = { layout: "vertical" };
     const dispatch = useDispatch();
     const router = useRouter();
+
+    // Save the cart data to the Redux store whenever the cart changes
+    useEffect(() => {
+        dispatch(updateCart(cart));
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart, dispatch]);
+
 
     const createOrder = async (data) => {
         try {
