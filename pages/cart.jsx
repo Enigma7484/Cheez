@@ -24,15 +24,16 @@ const Cart = () => {
 
     const createOrder = async (data) => {
         try {
-            const res = await axios.post("https://cheez.vercel.app/api/orders", data);
-            if (res.status === 201) {
-                dispatch(reset());
-                router.push(`/orders/${res.data._id}`);
-            }
+          const res = await axios.post("https://cheez.vercel.app/orders", data);
+          if (res.status === 201) {
+            dispatch(reset());
+            router.push(`/orders/${res.data._id}`);
+          }
         } catch (err) {
-            console.log(err);
+          console.log(err);
         }
-    };
+      };
+      
 
     // Custom component to wrap the PayPalButtons and handle currency changes
     const ButtonWrapper = ({ currency, showSpinner }) => {

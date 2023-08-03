@@ -1,11 +1,12 @@
 import dbConnect from "../../../util/mongo";
 import Order from "../../../models/Order";
+import OrderDetail from "../../components/OrderDetail";
 
 const handler = async (req, res) => {
     const { method, query: { id } } = req;
 
     await dbConnect();
-    
+
     if (method === "GET") {
         try {
             const order = await Order.findById(id);
@@ -25,8 +26,21 @@ const handler = async (req, res) => {
         }
     }
     if (method === "DELETE") {
-        
+
     }
 };
 
-export default handler;
+const OrderPage = ({ orderId }) => {
+    return <OrderDetail orderId={orderId} />;
+};
+
+export async function getServerSideProps({ params }) {
+    const orderId = params.orderId;
+    return {
+        props: {
+            orderId,
+        },
+    };
+}
+
+export default handler; OrderPage;
