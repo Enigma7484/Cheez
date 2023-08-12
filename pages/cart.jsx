@@ -24,16 +24,17 @@ const Cart = () => {
     const style = { layout: "vertical" };
     const dispatch = useDispatch();
     const router = useRouter();
+    const { orderId } = router.query;
 
     // Save the cart data to local storage whenever the cart changes
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
 
-    const handleAddToCart = (product) => {
-        // Dispatch the addProduct action with the selected product
-        dispatch(addProduct(product));
-    };
+    // const handleAddToCart = (product) => {
+    //     // Dispatch the addProduct action with the selected product
+    //     dispatch(addProduct(product));
+    // };
 
     const createOrder = async (data) => {
         try {
@@ -46,6 +47,24 @@ const Cart = () => {
             console.log(err);
         }
     };
+
+    // const handleCashOnDelivery = () => {
+    //     console.log("Cash on Delivery button clicked");
+    //     setCash(true);
+    // };
+
+    // const createOrderCash = async (data) => {
+    //     try {
+    //         const res = await axios.post("https://cheez.vercel.app/orders", data);
+    //         if (res.status === 201) {
+    //             dispatch(reset());
+    //             router.push(`/orders/${res.data._id}`);
+    //         }
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
 
     // Custom component to wrap the PayPalButtons and handle currency changes
     const ButtonWrapper = ({ currency, showSpinner }) => {
@@ -61,7 +80,7 @@ const Cart = () => {
                     currency: currency,
                 },
             });
-        }, [currency, showSpinner, dispatch, options]);
+        }, [currency, showSpinner]);
 
         return (
             <>
