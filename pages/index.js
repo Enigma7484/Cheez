@@ -14,8 +14,8 @@ export default function Home({ productList, admin }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Load cart data from sessionStorage
-    const cartData = sessionStorage.getItem('cart');
+    // Load cart data from localStorage
+    const cartData = localStorage.getItem('cart');
     const cart = cartData ? JSON.parse(cartData) : { products: [], quantity: 0, total: 0 };
 
     // Initialize the Redux store with the cart data

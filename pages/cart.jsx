@@ -1,7 +1,8 @@
+import React, { useState } from "react";
 import styles from "../styles/Cart.module.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     PayPalScriptProvider,
     PayPalButtons,
@@ -9,8 +10,10 @@ import {
 } from "@paypal/react-paypal-js";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { updateCart, reset } from "../redux/cartSlice";
+import { addProduct, reset } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
+import AddButton from "../components/AddButton";
+import Add from "../components/Add";
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
@@ -22,12 +25,15 @@ const Cart = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    // Save the cart data to the Redux store whenever the cart changes
+    // Save the cart data to local storage whenever the cart changes
     useEffect(() => {
-        dispatch(updateCart(cart));
-        sessionStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart, dispatch]);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
+    const handleAddToCart = (product) => {
+        // Dispatch the addProduct action with the selected product
+        dispatch(addProduct(product));
+    };
 
     const createOrder = async (data) => {
         try {
@@ -40,7 +46,6 @@ const Cart = () => {
             console.log(err);
         }
     };
-
 
     // Custom component to wrap the PayPalButtons and handle currency changes
     const ButtonWrapper = ({ currency, showSpinner }) => {
@@ -57,7 +62,6 @@ const Cart = () => {
                 },
             });
         }, [currency, showSpinner, dispatch, options]);
-
 
         return (
             <>
@@ -119,12 +123,7 @@ const Cart = () => {
                             <tr className={styles.tr} key={product._id}>
                                 <td>
                                     <div className={styles.imgContainer}>
-                                        <Image
-                                            src={product.img}
-                                            layout="fill"
-                                            objectFit="cover"
-                                            alt=""
-                                        />
+                                        <Image src={product.img} layout="fill" objectFit="cover" alt="" />
                                     </div>
                                 </td>
                                 <td>
@@ -144,9 +143,7 @@ const Cart = () => {
                                     <span className={styles.quantity}>{product.quantity}</span>
                                 </td>
                                 <td>
-                                    <span className={styles.total}>
-                                        ${product.price * product.quantity}
-                                    </span>
+                                    <span className={styles.total}>${product.price * product.quantity}</span>
                                 </td>
                             </tr>
                         ))}
@@ -167,10 +164,7 @@ const Cart = () => {
                     </div>
                     {open ? (
                         <div className={styles.paymentMethods}>
-                            <button
-                                className={styles.payButton}
-                                onClick={() => setCash(true)}
-                            >
+                            <button className={styles.payButton} onClick={() => setCash(true)}>
                                 CASH ON DELIVERY
                             </button>
                             <PayPalScriptProvider
@@ -194,11 +188,7 @@ const Cart = () => {
             </div>
             {cash && (
                 <div className={styles.orderdetailwrapper}>
-                    <OrderDetail
-                        total={cart.total}
-                        createOrder={createOrder}
-                        onClose={() => setCash(false)}
-                    />
+                    <OrderDetail total={cart.total} createOrder={createOrder} onClose={() => setCash(false)} />
                 </div>
             )}
         </div>
