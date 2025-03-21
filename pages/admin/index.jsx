@@ -34,6 +34,7 @@ const Index = ({ orders, products }) => {
         }
     }
 
+
     return (
         <div className={styles.container}>
             <div className={styles.item}>
