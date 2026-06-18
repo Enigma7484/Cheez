@@ -1,66 +1,162 @@
 .container {
-    padding: 50px;
-    display: flex;
+    width: min(1180px, calc(100% - 32px));
+    min-height: calc(100vh - 140px);
+    margin: 34px auto 72px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 28px;
   }
   
   .left {
-    flex: 2;
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid rgba(87, 67, 31, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 18px 46px rgba(37, 27, 12, 0.08);
+    overflow: hidden;
   }
   
   .right {
-    flex: 1;
+    min-width: 0;
   }
   
   .imgContainer {
-    width: 100px;
-    height: 100px;
+    width: 88px;
+    height: 88px;
     position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #fff2cc;
   }
   
   .table {
     width: 100%;
-    border-spacing: 20px;
+    border-collapse: collapse;
+  }
+
+  .table th {
+    padding: 18px 16px;
+    background: #241f19;
+    color: #fff8ec;
+    font-size: 12px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid rgba(87, 67, 31, 0.1);
+    vertical-align: middle;
   }
   
   .name {
-    font-weight: 500;
-    color: rgb(250,186,28);
+    font-weight: 900;
+    color: #241f19;
     font-size: 18px;
+  }
+
+  .extras {
+    color: #6a5f52;
+    font-size: 14px;
+  }
+
+  .price,
+  .quantity {
+    color: #3a3329;
+    font-weight: 800;
   }
   
   .total {
-    font-weight: 500;
+    font-weight: 900;
     font-size: 18px;
+    color: #a15e00;
   }
   
   .wrapper {
-    width: 90%;
-    max-height: 300px;
-    background-color: #333;
-    padding: 50px;
-    padding-top: 10px;
+    width: 100%;
+    position: sticky;
+    top: 118px;
+    background-color: #241f19;
+    border-radius: 8px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
+    color: #fff8ec;
+    box-shadow: 0 20px 48px rgba(37, 27, 12, 0.18);
+  }
+
+  .title {
+    margin: 0 0 20px;
+    font-size: 20px;
+    letter-spacing: 0;
+  }
+
+  .totalText {
+    display: flex;
     justify-content: space-between;
-    color: white;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 248, 236, 0.12);
   }
   
   .totalTextTitle {
     margin-right: 10px;
+    color: rgba(255, 248, 236, 0.68);
   }
   
   .button {
-    height: 30px;
-    color: rgb(250,186,28);
-    font-weight: bold;
+    min-height: 50px;
+    background: #f7b91e;
+    border-radius: 999px;
+    color: #241f19;
+    font-weight: 900;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 24px;
   }
-  
-  @media screen and (max-width: 480px) {
+
+  .paymentMethods{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .payButton{
+    min-height: 48px;
+    cursor: pointer;
+    background-color: #fff8ec;
+    color: #241f19;
+    border-radius: 999px;
+    font-weight: 900;
+  }
+
+  .orderdetailwrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    background: rgba(17, 14, 10, 0.58);
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 900px) {
     .container {
-      flex-direction: column;
-      padding: 20px;
+      width: calc(100% - 20px);
+      grid-template-columns: 1fr;
+    }
+
+    .wrapper {
+      position: static;
+    }
+  }
+
+  @media screen and (max-width: 620px) {
+    .left {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
     }
   
     .table {
@@ -79,7 +175,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      padding: 22px;
+      background: #ffffff;
+      border: 1px solid rgba(87, 67, 31, 0.12);
+      border-radius: 8px;
+      box-shadow: 0 12px 26px rgba(37, 27, 12, 0.08);
     }
   
     .imgContainer{
@@ -92,7 +193,7 @@
     }
   
     .price,.quantity{
-      font-size: 22px;
+      font-size: 16px;
     }
   
     .price::before{
@@ -108,23 +209,4 @@
       font-weight: 500;
     }
   
-    .wrapper{
-      width: 100%;
-    }
-  }
-
-  .paymentMethods{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .payButton{
-    padding: 10px 5px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    background-color: white;
-    color: teal;
-    font-weight: bold;
-
   }

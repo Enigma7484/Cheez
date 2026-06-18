@@ -1,146 +1,113 @@
 .container {
-    height: 100px;
-    padding: 0px 50px;
-    background-color: rgb(250,186,28);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    border-radius: 10px;
-    transition: 0.5s;
+  width: min(1180px, calc(100% - 32px));
+  height: 82px;
+  margin: 16px auto 0;
+  padding: 0 18px 0 24px;
+  background: rgba(255, 248, 236, 0.92);
+  border: 1px solid rgba(87, 67, 31, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(37, 27, 12, 0.12);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 14px;
+  z-index: 999;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.item:nth-child(2) {
+  flex: 2;
+  justify-content: center;
+}
+
+.item:last-child {
+  justify-content: flex-end;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.list {
+  padding: 6px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid rgba(87, 67, 31, 0.1);
+  border-radius: 999px;
+}
+
+.listItem a {
+  display: block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: #3a3329;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.listItem a:hover {
+  background: #241f19;
+  color: #fff8ec;
+}
+
+.cart {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: #241f19;
+  border-radius: 50%;
+  box-shadow: 0 10px 26px rgba(36, 31, 25, 0.22);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.cart:hover {
+  transform: translateY(-2px);
+  background: #3b3124;
+}
+
+.counter {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f7b91e;
+  border: 2px solid #fff8ec;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #241f19;
+}
+
+@media screen and (max-width: 720px) {
+  .container {
+    width: calc(100% - 20px);
+    height: 72px;
+    margin-top: 10px;
+    padding: 0 12px 0 16px;
   }
-  
-  .item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-  
+
   .item:nth-child(2) {
-    flex: 3;
+    display: none;
   }
-  
-  .item:last-child {
-    justify-content: flex-end;
-  }
-  
-  .callButton {
-    background-color: white;
-    border-radius: 50%;
-    padding: 10px;
-    width: 50px;
-    height: 50px;
-  }
-  
-  .texts {
-    margin-left: 30px;
-    color: white;
-    cursor: pointer;
-    transition: 0.5s;
-  }
-  
-  .texts:hover {
-    color: black;
-  }
-  
-  
-  .text:first-child {
-    font-size: 12px;
-    font-weight: 500;
-  }
-  
-  .text:last-child {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .list {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    list-style: none;
-    color: white;
-  }
-  
-  .listItem {
-    margin: 20px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  .cart {
-    position: relative;
-    cursor: pointer;
-    transition: 0.5s;
-  }
-  
-  .cart:hover {
-    background-color: black;
-  }
-  
-  
-  .counter {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: white;
-    padding: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: rgba(255, 242, 0, 0.868);
-  }
-  
-  
-
-  
-  @media screen and (max-width: 480px) {
-    /* .container {
-      width: 100%;
-    }
-  
-    .item {
-      flex: 1;
-    } */
-  
-    .item:nth-child(2) {
-      display: none;
-      /* flex: 0; */
-    }
-
-    .item:nth-child(1) {
-      flex: 3;
-    }
-  
-    /* .item:last-child {
-      justify-content: center;
-    }
-  
-    .callButton {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .texts {
-      margin-left: 0;
-    }
-  
-    .list {
-      flex-direction: column;
-    }
-  
-    .listItem {
-      margin: 10px 0;
-    }
-  
-    .cart {
-      display: none;
-    } */
-  }
-  
+}

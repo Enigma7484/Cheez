@@ -1,59 +1,70 @@
 .container{
-    height: calc(100vh - 100px);
-    background-color: #222;
-    display: flex;
+    background-color: #241f19;
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    color: #fff8ec;
 }
 
 .item{
-    flex: 1;
     position: relative;
     display: flex;
+    min-height: 420px;
 }
 
 .item:last-child{
-    flex: 2;
-    padding: 50px;
+    padding: 54px;
     justify-content: space-between;
+    gap: 24px;
 }
 
 .card{
     flex: 1;
-    padding: 0 20px;
 }
 
 .title{
-    font-size: 18px;
-    color: #b7903c;
+    margin: 0 0 18px;
+    font-size: 16px;
+    color: #ffd66a;
+    letter-spacing: 0;
+    text-transform: uppercase;
 }
 
 .text{
-    color: lightgray;
+    color: rgba(255, 248, 236, 0.72);
+    line-height: 1.65;
 }
 
 .motto{
-    color: rgb(211, 211, 211);
+    max-width: 240px;
+    margin: 0;
+    color: #fff8ec;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: 0;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 840px) {
     
     .container{
-        height: auto;
-        text-align: center;
+        grid-template-columns: 1fr;
     }
+
     .item:first-child {
         display: none;
     }
 
-    .item{
+    .item:last-child{
+        min-height: auto;
         flex-direction: column;
+        padding: 34px 22px;
     }
 
     .title{
-        font-size: 30px;
+        font-size: 15px;
     }
 
     .text{
-        font-size: 20px;
+        font-size: 16px;
     }
     
 }

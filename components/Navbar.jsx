@@ -1,44 +1,55 @@
-import React from 'react'
-import Image from "next/image"
-import styles from '../styles/Navbar.module.css'
-import { useSelector } from 'react-redux'
-import Link from 'next/link'
+import React from "react";
+import Image from "next/image";
+import styles from "../styles/Navbar.module.css";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const Navbar = () => {
-  const quantity = useSelector(state => state.cart.quantity)
+  const quantity = useSelector((state) => state.cart.quantity);
+
   return (
-    <div className={styles.container}>
+    <header className={styles.container}>
       <div className={styles.item}>
-      <div className={styles.callButton}>
-          <Image src="/img/telephone.png" alt="" width="32" height="32" />
-      </div>  
-      <div className={styles.texts}>
-        <div className={styles.text}>ORDER NOW!</div>
-        <div className={styles.text}>09638-050505</div>
+        <Link href="/" passHref>
+          <a className={styles.brand} aria-label="Cheez homepage">
+            <Image src="/img/Cheez.png" alt="Cheez" width={124} height={74} />
+          </a>
+        </Link>
       </div>
-      </div>
-      <div className={styles.item}>
-          <ul className={styles.list}>
+
+      <nav className={styles.item} aria-label="Primary navigation">
+        <ul className={styles.list}>
+          <li className={styles.listItem}>
             <Link href="/" passHref>
-              <li className={styles.listItem}>Homepage</li>
+              <a>Home</a>
             </Link>
-            <li className={styles.listItem}>Our Products</li>
-            <li className={styles.listItem}>Menu</li>
-            <Image src="/img/Cheez.png" alt="" width={160} height={96} />
-            <li className={styles.listItem}>Events</li>
-            <li className={styles.listItem}>Contact Us</li>
-          </ul>
-      </div>
+          </li>
+          <li className={styles.listItem}>
+            <Link href="/#menu" passHref>
+              <a>Menu</a>
+            </Link>
+          </li>
+          <li className={styles.listItem}>
+            <Link href="/#locations" passHref>
+              <a>Locations</a>
+            </Link>
+          </li>
+          <li className={styles.listItem}>
+            <a href="tel:09638050505">Call</a>
+          </li>
+        </ul>
+      </nav>
+
       <Link href="/cart" passHref>
-        <div className={styles.item}>
+        <a className={styles.item} aria-label={`Cart with ${quantity} items`}>
           <div className={styles.cart}>
-            <Image src="/img/cart.png" alt="" width={30} height={30} />
+            <Image src="/img/cart.png" alt="" width={26} height={26} />
             <div className={styles.counter}>{quantity}</div>
           </div>
-        </div>
+        </a>
       </Link>
-    </div>
-  )
-}
+    </header>
+  );
+};
 
-export default Navbar
+export default Navbar;

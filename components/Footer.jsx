@@ -4,7 +4,7 @@ import styles from "../styles/Footer.module.css"
 
 const Footer = () => {
   return (
-    <div className={styles.container}>
+    <footer className={styles.container} id="locations">
         <div className={styles.item}>
             <Image src="/img/bg.png" objectFit="cover" layout='fill' alt=""/>
         </div>
@@ -45,7 +45,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
-    </div>
+    </footer>
   )
 }
 

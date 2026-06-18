@@ -35,47 +35,65 @@ const Product = ({ pizza }) => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({...pizza, extras, price, quantity}));
+    dispatch(addProduct({ ...pizza, extras, price, quantity: Number(quantity) }));
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
-          <Image src={pizza.img} objectFit="contain" layout="fill" alt="" />
+          <Image src={pizza.img} objectFit="contain" layout="fill" alt={pizza.title} />
         </div>
       </div>
       <div className={styles.right}>
+        <span className={styles.kicker}>Build your pizza</span>
         <h1 className={styles.title}>{pizza.title}</h1>
-        <span className={styles.price}>${price}</span>
         <p className={styles.desc}>{pizza.desc}</p>
+        <span className={styles.price}>Tk.{price}</span>
+
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
-          <div className={styles.size} onClick={() => handleSize(0)}>
+          <button
+            className={`${styles.size} ${size === 0 ? styles.selected : ""}`}
+            onClick={() => handleSize(0)}
+            type="button"
+          >
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Small</span>
-          </div>
-          <div className={styles.size} onClick={() => handleSize(1)}>
+          </button>
+          <button
+            className={`${styles.size} ${size === 1 ? styles.selected : ""}`}
+            onClick={() => handleSize(1)}
+            type="button"
+          >
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Medium</span>
-          </div>
-          <div className={styles.size} onClick={() => handleSize(2)}>
+          </button>
+          <button
+            className={`${styles.size} ${size === 2 ? styles.selected : ""}`}
+            onClick={() => handleSize(2)}
+            type="button"
+          >
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Large</span>
-          </div>
+          </button>
         </div>
+
         <h3 className={styles.choose}>Choose additional ingredients</h3>
         <div className={styles.ingredients}>
           {pizza.extraOptions.map((option) => (
             <div className={styles.option} key={option._id}>
               <input
                 type="checkbox"
-                id={option.text}
+                id={option._id}
                 name={option.text}
                 className={styles.checkbox}
                 onChange={(e) => handleChange(e, option)}
               />
-              <label htmlFor="double">{option.text}</label>
+              <label htmlFor={option._id}>
+                {option.text}
+                <span>+Tk.{option.price}</span>
+              </label>
             </div>
           ))}
         </div>
@@ -83,8 +101,10 @@ const Product = ({ pizza }) => {
           <input
             onChange={(e) => setQuantity(e.target.value)}
             type="number"
+            min="1"
             defaultValue={1}
             className={styles.quantity}
+            aria-label="Quantity"
           />
           <button className={styles.button} onClick={handleClick}>
             Add to Cart

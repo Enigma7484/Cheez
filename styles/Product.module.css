@@ -1,154 +1,214 @@
 .container {
-    height: calc(100vh - 100px);
-    display: flex;
-  }
-  
-  .left {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .right {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .imgContainer {
-    width: 80%;
-    height: 80%;
-    position: relative;
-  }
-  .Product_number__L2CFz {
-    position: absolute;
-    top: 55px;
-    right: -20px;
-    background-color: teal;
-    color: white;
-    font-size: 12px;
-    padding: 0 5px;
-    border-radius: 10px;
+  width: min(1180px, calc(100% - 32px));
+  min-height: calc(100vh - 124px);
+  margin: 34px auto 72px;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
+  gap: 34px;
+  align-items: center;
 }
-  .price {
-    color: #d1411e;
-    font-size: 24px;
-    font-weight: 400;
-    border-bottom: 1px solid #d1411e;
-  }
-  
-  .sizes {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .size {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .size:nth-child(2) {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .size:nth-child(3) {
-    width: 50px;
-    height: 50px;
+
+.left {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at center, rgba(247, 185, 30, 0.28), transparent 58%),
+    #ffffff;
+  border: 1px solid rgba(87, 67, 31, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(37, 27, 12, 0.1);
+}
+
+.right {
+  padding: 10px 0 10px 24px;
+}
+
+.imgContainer {
+  width: min(82%, 520px);
+  aspect-ratio: 1;
+  position: relative;
+  filter: drop-shadow(0 28px 32px rgba(37, 27, 12, 0.18));
+}
+
+.kicker {
+  color: #b47706;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 12px 0 14px;
+  color: #241f19;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.desc {
+  max-width: 560px;
+  color: #675b4d;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.price {
+  display: inline-flex;
+  margin: 6px 0 26px;
+  padding: 10px 16px;
+  background: #241f19;
+  border-radius: 999px;
+  color: #ffd66a;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.choose {
+  margin: 22px 0 14px;
+  color: #2f2a24;
+  font-size: 16px;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.size {
+  width: 112px;
+  height: 96px;
+  position: relative;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid rgba(87, 67, 31, 0.13);
+  border-radius: 8px;
+  transition: border 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.size:nth-child(2),
+.size:nth-child(3),
+.size:last-child {
+  width: 112px;
+  height: 96px;
+}
+
+.size:hover,
+.selected {
+  border-color: #f7b91e;
+  box-shadow: 0 12px 28px rgba(247, 185, 30, 0.2);
+  transform: translateY(-2px);
+}
+
+.number {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  background: #241f19;
+  color: #fff8ec;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 5px 9px;
+  border-radius: 999px;
+}
+
+.ingredients {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 14px;
+  background: #ffffff;
+  border: 1px solid rgba(87, 67, 31, 0.12);
+  border-radius: 8px;
+  color: #3a3329;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.option label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.option label span {
+  color: #a15e00;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin: 0 10px 0 0;
+  accent-color: #f7b91e;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity {
+  width: 76px;
+  height: 50px;
+  border: 1px solid rgba(87, 67, 31, 0.16);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: #241f19;
+  font-weight: 900;
+}
+
+.button {
+  min-height: 50px;
+  padding: 0 22px;
+  background: #f7b91e;
+  color: #241f19;
+  border-radius: 999px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(247, 185, 30, 0.26);
+}
+
+@media screen and (max-width: 860px) {
+  .container {
+    width: calc(100% - 20px);
+    min-height: auto;
+    grid-template-columns: 1fr;
+    margin-top: 20px;
   }
 
-  .size:last-child {
-    width: 60px;
-    height: 60px;
+  .left {
+    min-height: 360px;
   }
-  
-  .number {
-    position: absolute;
-    top: -5px;
-    right: -20px;
-    background-color: teal;
-    color: white;
-    font-size: 12px;
-    padding: 0 5px;
-    border-radius: 10px;
+
+  .right {
+    padding: 0;
   }
-  
+}
+
+@media screen and (max-width: 540px) {
   .ingredients {
-    display: flex;
-    margin-bottom: 30px;
+    grid-template-columns: 1fr;
   }
-  
-  .option {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    font-size: 14px;
-    font-weight: 500;
+
+  .add {
+    align-items: stretch;
   }
-  
-  .checkbox {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .quantity {
-    width: 50px;
-    height: 30px;
-  }
-  
+
   .button {
-    height: 30px;
-    margin-left: 10px;
-    background-color: rgb(250,186,28);
-    color: white;
-    border: none;
-    font-weight: 500;
-    cursor: pointer;
+    flex: 1;
   }
-  
-  @media screen and (max-width: 480px) {
-    .container {
-      height: auto;
-      text-align: center;
-      flex-direction: column;
-      margin-top: 20px;
-    }
-  
-    .imgContainer {
-      width: 70vw;
-      height: 70vw;
-    }
-  
-    .title {
-      margin: 5px;
-    }
-  
-    .sizes {
-      width: 100%;
-      padding: 0px 20px;
-    }
-  
-    .ingredients {
-      flex-direction: column;
-    }
-  
-    .option {
-      margin: 10px;
-      font-size: 18px;
-    }
-  
-    .checkbox {
-      width: 25px;
-      height: 25px;
-    }
-  
-    .quantity,
-    .button {
-      height: 50px;
-      padding: 10px 20px;
-    }
-  }
+}

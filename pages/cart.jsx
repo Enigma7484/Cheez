@@ -38,7 +38,7 @@ const Cart = () => {
 
     const createOrder = async (data) => {
         try {
-            const res = await axios.post("https://cheez.vercel.app/orders", data);
+            const res = await axios.post("/api/orders", data);
             if (res.status === 201) {
                 dispatch(reset());
                 router.push(`/orders/${res.data._id}`);
@@ -80,7 +80,7 @@ const Cart = () => {
                     currency: currency,
                 },
             });
-        }, [currency, showSpinner]);
+        }, [currency, dispatch, options, showSpinner]);
 
         return (
             <>
@@ -156,13 +156,13 @@ const Cart = () => {
                                     </span>
                                 </td>
                                 <td>
-                                    <span className={styles.price}>${product.price}</span>
+                                    <span className={styles.price}>Tk.{product.price}</span>
                                 </td>
                                 <td>
                                     <span className={styles.quantity}>{product.quantity}</span>
                                 </td>
                                 <td>
-                                    <span className={styles.total}>${product.price * product.quantity}</span>
+                                    <span className={styles.total}>Tk.{product.price * product.quantity}</span>
                                 </td>
                             </tr>
                         ))}
@@ -173,13 +173,13 @@ const Cart = () => {
                 <div className={styles.wrapper}>
                     <h2 className={styles.title}>CART TOTAL</h2>
                     <div className={styles.totalText}>
-                        <b className={styles.totalTextTitle}>Subtotal:</b>${cart.total}
+                        <b className={styles.totalTextTitle}>Subtotal:</b>Tk.{cart.total}
                     </div>
                     <div className={styles.totalText}>
-                        <b className={styles.totalTextTitle}>Discount:</b>$0.00
+                        <b className={styles.totalTextTitle}>Discount:</b>Tk.0
                     </div>
                     <div className={styles.totalText}>
-                        <b className={styles.totalTextTitle}>Total:</b>${cart.total}
+                        <b className={styles.totalTextTitle}>Total:</b>Tk.{cart.total}
                     </div>
                     {open ? (
                         <div className={styles.paymentMethods}>
